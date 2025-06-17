@@ -1,0 +1,126 @@
+<ContentPage
+    x:Class="JoaoCar2.Views.FiltrosVeiculosPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:JoaoCar2.Converters"
+    Title="Filtros"
+    BackgroundColor="#181C21">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:PagoStatusConverter x:Key="PagoStatusConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="18" Padding="24">
+            <!-- Botão Voltar -->
+            <Button Text="Voltar"
+                    Clicked="OnVoltarClicked"
+                    BackgroundColor="#23272F"
+                    TextColor="#FFCA3A"
+                    CornerRadius="8"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Start"
+                    WidthRequest="80"/>
+
+            <Label Text="Filtrar Veículos"
+                   FontAttributes="Bold"
+                   FontSize="22"
+                   HorizontalOptions="Center"
+                   TextColor="#FFCA3A"/>
+
+            <!-- Placa -->
+            <Entry x:Name="placaEntry"
+                   Placeholder="Placa"
+                   BackgroundColor="#23272F"
+                   TextColor="#F1F1F1"
+                   PlaceholderColor="#808080"
+                   MaxLength="7"/>
+
+            <!-- Proprietário -->
+            <Entry x:Name="proprietarioEntry"
+                   Placeholder="Proprietário"
+                   BackgroundColor="#23272F"
+                   TextColor="#F1F1F1"
+                   PlaceholderColor="#808080"/>
+
+            <!-- Tipo de Contrato -->
+            <Picker x:Name="tipoContratoPicker"
+                    Title="Tipo de Contrato"
+                    BackgroundColor="#23272F"
+                    TextColor="#F1F1F1">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Todos</x:String>
+                        <x:String>Mensalista</x:String>
+                        <x:String>Diario</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <!-- Data -->
+            <DatePicker x:Name="dataPicker"
+                        Format="dd/MM/yyyy"
+                        BackgroundColor="#23272F"
+                        TextColor="#F1F1F1"/>
+
+            <!-- Status Pagamento -->
+            <Picker x:Name="statusPagamentoPicker"
+                    Title="Status Pagamento"
+                    BackgroundColor="#23272F"
+                    TextColor="#F1F1F1">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Todos</x:String>
+                        <x:String>Pago</x:String>
+                        <x:String>Não Pago</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <!-- Botões -->
+            <HorizontalStackLayout Spacing="16" Margin="0,10,0,0">
+                <Button Text="Limpar"
+                        BackgroundColor="#D7263D"
+                        TextColor="White"
+                        CornerRadius="8"
+                        Clicked="OnLimparClicked"/>
+                <Button Text="Aplicar Filtros"
+                        BackgroundColor="#1976D2"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="8"
+                        Clicked="OnAplicarClicked"/>
+            </HorizontalStackLayout>
+
+            <!-- Listagem dos resultados filtrados -->
+            <CollectionView x:Name="resultadosCollectionView"
+                            Margin="0,20,0,0"
+                            IsVisible="False">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#23272F" BorderColor="#23272F" Padding="10" CornerRadius="10" Margin="0,6">
+                            <VerticalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Label Text="{Binding Placa}" FontAttributes="Bold" TextColor="#FFCA3A" FontSize="18"/>
+                                    <Label Text=" | " TextColor="#808080"/>
+                                    <Label Text="{Binding Marca}" TextColor="White"/>
+                                    <Label Text=" | " TextColor="#808080"/>
+                                    <Label Text="{Binding Modelo}" TextColor="White"/>
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding Cor}" TextColor="#F1F1F1"/>
+                                <Label Text="Proprietário: " TextColor="#808080" FontSize="12"/>
+                                <Label Text="{Binding NomeProprietario}" TextColor="#F1F1F1" FontSize="12"/>
+                                <Label Text="{Binding DataEntrada, StringFormat='Entrada: {0:dd/MM/yyyy HH:mm}'}" TextColor="#F1F1F1" FontSize="12"/>
+                                <Label Text="{Binding DataSaida, StringFormat='Saída: {0:dd/MM/yyyy HH:mm}'}" TextColor="#FFCA3A" FontSize="12"/>
+                                <Label Text="{Binding Tipo}" TextColor="#FFCA3A" FontSize="12"/>
+                                <Label Text="{Binding Pago, Converter={StaticResource PagoStatusConverter}}" TextColor="#FFCA3A" FontSize="12"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

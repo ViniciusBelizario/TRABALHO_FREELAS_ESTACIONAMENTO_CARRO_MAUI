@@ -1,0 +1,101 @@
+<ContentPage
+    x:Class="JoaoCar2.Views.CadastroVeiculoPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Cadastro de Veículo"
+    BackgroundColor="#181C21">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="14" Padding="20">
+
+            <!-- Imagem temática -->
+            <Image Source="car.png" HeightRequest="90" HorizontalOptions="Center" />
+
+            <!-- Título -->
+            <Label Text="Cadastrar/Adicionar Veículo"
+                   FontAttributes="Bold"
+                   FontSize="22"
+                   HorizontalOptions="Center"
+                   TextColor="#FFCA3A"/>
+
+            <!-- Campos -->
+            <Entry x:Name="placaEntry"
+                   Placeholder="Placa (ex: ABC1234)"
+                   BackgroundColor="#23272F"
+                   TextColor="#F1F1F1"
+                   PlaceholderColor="#808080"
+                   MaxLength="7"
+                   TextChanged="PlacaEntry_TextChanged"/>
+
+            <Entry x:Name="marcaEntry"
+                   Placeholder="Marca"
+                   BackgroundColor="#23272F"
+                   TextColor="#F1F1F1"
+                   PlaceholderColor="#808080"
+                   MaxLength="30"/>
+
+            <Entry x:Name="modeloEntry"
+                   Placeholder="Modelo"
+                   BackgroundColor="#23272F"
+                   TextColor="#F1F1F1"
+                   PlaceholderColor="#808080"
+                   MaxLength="30"/>
+
+            <Entry x:Name="corEntry"
+                   Placeholder="Cor"
+                   BackgroundColor="#23272F"
+                   TextColor="#F1F1F1"
+                   PlaceholderColor="#808080"
+                   MaxLength="20"/>
+
+            <Entry x:Name="nomeProprietarioEntry"
+                   Placeholder="Nome do Proprietário"
+                   BackgroundColor="#23272F"
+                   TextColor="#F1F1F1"
+                   PlaceholderColor="#808080"
+                   MaxLength="40"/>
+
+            <Picker x:Name="tipoPicker"
+                    Title="Tipo"
+                    BackgroundColor="#23272F"
+                    TextColor="#F1F1F1">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Mensalista</x:String>
+                        <x:String>Diario</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <!-- Foto do Veículo -->
+            <Frame BorderColor="#23272F"
+                   BackgroundColor="#23272F"
+                   HeightRequest="120"
+                   VerticalOptions="Center"
+                   CornerRadius="10"
+                   HasShadow="True">
+                <Image x:Name="fotoImage" HeightRequest="100"/>
+            </Frame>
+            <Button Text="Selecionar Foto"
+                    Clicked="OnSelecionarFotoClicked"
+                    BackgroundColor="#23272F"
+                    TextColor="#FFCA3A"
+                    FontAttributes="Bold"
+                    CornerRadius="6"/>
+
+            <!-- Data/Hora de entrada -->
+            <Label x:Name="dataEntradaLabel"
+                   Text="Data/Hora de entrada:"
+                   FontSize="12"
+                   TextColor="#808080"/>
+
+            <!-- Botão Salvar -->
+            <Button Text="Salvar"
+                    Clicked="OnSalvarClicked"
+                    BackgroundColor="#1976D2"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="6"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="JoaoCar2.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:JoaoCar2.Views"
+    Title="JoaoCar2"
+    Shell.FlyoutBackgroundColor="#181C21"
+    Shell.FlyoutWidth="320"
+    BackgroundColor="#181C21">
+
+    <!-- Cabeçalho do Menu Lateral -->
+    <Shell.FlyoutHeader>
+        <StackLayout Padding="10" BackgroundColor="#23272F">
+            <Image Source="logo_estacionamento.png" HeightRequest="90" HorizontalOptions="Center"/>
+            <Label Text="JoaoCar2 - Gestor de Estacionamento"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#FFCA3A"
+                   HorizontalOptions="Center"/>
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
+    <!-- Itens do menu lateral -->
+    <FlyoutItem Title="Cadastrar/Adicionar Veículos" Icon="car.png" Route="CadastroVeiculoPage">
+        <ShellContent ContentTemplate="{DataTemplate views:CadastroVeiculoPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Estacionamento" Icon="parking.png" Route="ListagemVeiculosPage">
+        <ShellContent ContentTemplate="{DataTemplate views:ListagemVeiculosPage}" />
+    </FlyoutItem>
+
+    <!-- Rodapé do menu lateral -->
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="10,0" BackgroundColor="#23272F">
+            <BoxView HeightRequest="1" BackgroundColor="#444" Margin="0,0,0,4"/>
+            <Label Text="v1.0.0" FontSize="12" TextColor="#808080" HorizontalOptions="End"/>
+
+            <Label Text="Arthur Bonifácio Duarte - RA: 2022198582" 
+               FontSize="12" 
+               TextColor="#1976D2" 
+               HorizontalOptions="End"/>
+
+            <Label Text="João Arthur - RA: 2022198720" 
+               FontSize="12" 
+               TextColor="#1976D2" 
+               HorizontalOptions="End"/>
+        </StackLayout>
+    </Shell.FlyoutFooter>
+
+</Shell>
